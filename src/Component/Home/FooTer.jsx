@@ -4,7 +4,7 @@ import "./Home.css";
 const FooTer = () => {
   return (
     <div>
-      <Footer container className="mt-10">
+      <Footer container className="mt-10 bg-zinc-100 mb-5">
         <div className="w-full text-center">
           <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
             <div className="flex gap-2">
@@ -33,7 +33,7 @@ const FooTer = () => {
             </Footer.LinkGroup>
           </div>
           <Footer.Divider />
-          <Footer.Copyright href="#" by="CareCamp™" year={2022} />
+          <Footer.Copyright href="#" by="CareCamp™" year={2023} />
         </div>
       </Footer>
     </div>

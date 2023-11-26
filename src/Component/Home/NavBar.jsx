@@ -3,8 +3,20 @@ import "./Home.css";
 import { NavLink } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 import { Button } from "flowbite-react";
+import { useContext } from "react";
+import { AuthContext } from "../Authentication/AuthProvider";
+
+// import { HomeIcon } from "@heroicons/react/24/solid";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleSignout = () => {
+    logOut()
+      .then((result) => {
+        console.log(result, "successfully log out");
+      })
+      .catch((error) => console.error(error));
+  };
   const NavList = (
     <>
       <NavLink
@@ -44,19 +56,46 @@ const NavBar = () => {
       >
         Contact Us
       </NavLink>
-      <NavLink to="/login">
-        <Button
-          className="font-poppins text-xl"
-          outline
-          gradientDuoTone="tealToLime"
-        >
-          Log In
-        </Button>
-      </NavLink>
-      <NavLink to="/register">
-        <Button className="font-poppins text-xl" gradientMonochrome="success">
-          Register
-        </Button>
+
+      {user ? (
+        <>
+          <div className="flex items-center">
+            <span>{user?.displayName}</span>
+            <img className="h-10 w-10 rounded-full" src={user?.photoURL}></img>
+          </div>
+          <Button
+            onClick={handleSignout}
+            className="font-poppins text-xl"
+            gradientDuoTone="tealToLime"
+          >
+            Log Out
+          </Button>
+        </>
+      ) : (
+        <>
+          <NavLink to="/login">
+            <Button
+              className="font-poppins text-xl"
+              gradientDuoTone="tealToLime"
+            >
+              Log In
+            </Button>
+          </NavLink>
+
+          <NavLink to="/register">
+            <Button
+              className="font-poppins text-xl"
+              gradientMonochrome="success"
+            >
+              Register
+            </Button>
+          </NavLink>
+        </>
+      )}
+      <NavLink to="/dashboard">
+        <button className="btn">
+          <MdDashboard className="text-3xl text-orange-600"></MdDashboard>
+        </button>
       </NavLink>
     </>
   );
@@ -73,12 +112,12 @@ const NavBar = () => {
             <span className="logoColor">m</span>P
           </span>
         </Navbar.Brand>
-        <div className="flex md:order-2">
+        {/* <div className="flex md:order-2">
           <Dropdown
             arrowIcon={false}
             inline
             label={
-              <MdDashboard className="text-3xl text-orange-600"></MdDashboard>
+             
             }
           >
             <Dropdown.Header>
@@ -94,7 +133,7 @@ const NavBar = () => {
             <Dropdown.Item>Sign out</Dropdown.Item>
           </Dropdown>
           <Navbar.Toggle />
-        </div>
+        </div> */}
         <Navbar.Collapse>{NavList}</Navbar.Collapse>
       </Navbar>
     </div>
