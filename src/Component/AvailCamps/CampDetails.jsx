@@ -1,9 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import { Button, Label, Modal } from "flowbite-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Authentication/AuthProvider";
 
 const CampDetails = () => {
   const loader = useLoaderData();
+  const { user } = useContext(AuthContext);
   const [openModal, setOpenModal] = useState(false);
   function onCloseModal() {
     setOpenModal(false);
@@ -45,9 +47,19 @@ const CampDetails = () => {
           </div>
         </div>
         <div className="flex justify-between ">
-          <Button className="mb-10" onClick={() => setOpenModal(true)}>
-            Join Camp
-          </Button>
+          {user?.role === "Organizers" ? (
+            <Button
+              disabled
+              className="mb-10"
+              onClick={() => setOpenModal(true)}
+            >
+              Join Camp
+            </Button>
+          ) : (
+            <Button className="mb-10" onClick={() => setOpenModal(true)}>
+              Join Camp
+            </Button>
+          )}
           <Modal show={openModal} onClose={onCloseModal} popup>
             <Modal.Header />
             <Modal.Body>

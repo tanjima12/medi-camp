@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Authentication/AuthProvider";
 import { FaDeleteLeft } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const RegisteredCamp = () => {
   const axiosSecure = useAxiosPublic();
@@ -46,8 +47,16 @@ const RegisteredCamp = () => {
       <div className="flex justify-evenly mt-10">
         <h1 className="text-2xl font-poppins">Total Camp: {Camps.length}</h1>
         <h1 className="text-2xl font-poppins">Price: ${totalFees}</h1>
-
-        <Button className="text-4xl font-poppins">Pay</Button>
+        <Link to="/dashboard/payment">
+          {Camps.length ? (
+            <Button className="text-4xl font-poppins">Pay</Button>
+          ) : (
+            <Button disabled className="text-4xl font-poppins">
+              Pay
+            </Button>
+          )}
+        </Link>
+        /dashboard/payment
       </div>
       <div className="mt-5 mr-5 ">
         <div className="overflow-x-auto mt-5">
