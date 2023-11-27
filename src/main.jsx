@@ -20,6 +20,8 @@ import UpdateOrganizerInfo from "./Component/DashBoard/UpdateOrganizerInfo";
 import AddCamps from "./Component/DashBoard/AddCamp";
 import ManageCamps from "./Component/DashBoard/ManageCamps";
 import ManageUpdate from "./Component/DashBoard/ManageUpdate";
+import Payment from "./Component/DashBoard/Payment";
+import RegisteredCamp from "./Component/Payment/RegisteredCamp";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
       {
         path: "manageCamps",
         element: <ManageCamps></ManageCamps>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "registered-camps",
+        element: <RegisteredCamp></RegisteredCamp>,
       },
     ],
   },

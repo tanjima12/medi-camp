@@ -5,7 +5,7 @@ import useAxiosPublic from "../Hook/useAxiosPublic";
 
 const AvailCamps = () => {
   const axiosSecure = useAxiosPublic();
-  const { data: users } = useQuery({
+  const { data: users = [] } = useQuery({
     queryKey: ["popularCamps"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/popularCamps`);

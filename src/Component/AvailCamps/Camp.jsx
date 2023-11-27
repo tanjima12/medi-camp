@@ -53,10 +53,13 @@ const Camp = ({ camp }) => {
     const age = form.age.value;
     const phoneNumber = form.phone.value;
     const gender = form.gender.value;
-    const fees = form.fees.value;
+    const fees = parseInt(form.fees.value);
     const address = form.address.value;
     const requirements = form.requirements.value;
     const contact = form.contact.value;
+    const email = form.email.value;
+    const campName = form.campName.value;
+    const venueLocation = form.venue.value;
 
     const joinCampinfo = {
       name,
@@ -68,6 +71,9 @@ const Camp = ({ camp }) => {
       requirements,
       contact,
       campId: _id,
+      email,
+      campName,
+      venueLocation,
     };
 
     fetch("http://localhost:5004/joinCamp", {
@@ -139,6 +145,7 @@ const Camp = ({ camp }) => {
                           name="name"
                         />
                       </div>
+
                       <div>
                         <div className="mb-2 block">
                           <Label value="Age" />
@@ -232,6 +239,42 @@ const Camp = ({ camp }) => {
                           required
                         />
                       </div>
+                    </div>
+                    <div className="flex justify-between mr-5">
+                      <div>
+                        <div className="mb-2 block ">
+                          <Label value="Please Provide Your Email" />
+                        </div>
+                        <input
+                          type="text"
+                          placeholder="Email"
+                          className="w-[250px]"
+                          name="email"
+                        />
+                      </div>
+                      <div>
+                        <div className="mb-2 block ">
+                          <Label value="Camp Name" />
+                        </div>
+                        <input
+                          type="text"
+                          placeholder="Camp Name"
+                          className="w-[250px]"
+                          name="campName"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="mb-2 block">
+                        <Label value="Venue" />
+                      </div>
+                      <input
+                        type="text"
+                        className="w-[250px]"
+                        placeholder="Venue"
+                        name="venue"
+                        required
+                      />
                     </div>
 
                     <div className="w-full flex justify-center">

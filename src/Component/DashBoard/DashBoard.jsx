@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { CgAdd, CgEditFade, CgMenu, CgProfile } from "react-icons/cg";
 import { FaUserShield } from "react-icons/fa";
 import NavBar from "../Home/Navbar";
+import { FaCcAmazonPay } from "react-icons/fa6";
 
 const DashBoard = () => {
   const isAdmin = true;
@@ -48,6 +49,24 @@ const DashBoard = () => {
                     >
                       <CgEditFade></CgEditFade>
                       Manage Register Camps
+                    </NavLink>
+                  </li>
+                  <li className="">
+                    <NavLink
+                      className="text-white ml-10 text-2xl font-Rosarivo flex "
+                      to="/dashboard/registered-camps"
+                    >
+                      <CgEditFade></CgEditFade>
+                      Registered Camps
+                    </NavLink>
+                  </li>
+                  <li className="">
+                    <NavLink
+                      className="text-white ml-10 text-2xl font-Rosarivo flex "
+                      to="/dashboard/payment"
+                    >
+                      <FaCcAmazonPay></FaCcAmazonPay>
+                      Payment
                     </NavLink>
                   </li>
                   <li>
