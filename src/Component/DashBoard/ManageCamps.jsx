@@ -2,12 +2,14 @@ import { Button, Table } from "flowbite-react";
 import { MdDeleteForever, MdEdit } from "react-icons/md";
 import useAxiosPublic from "../Hook/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { FaTrashAlt } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ManageCamps = () => {
+  // const [camp, setCamp] = useState();
   const axiosSecure = useAxiosPublic();
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["popularCamps"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/popularCamps`);
@@ -15,7 +17,25 @@ const ManageCamps = () => {
     },
   });
 
-  
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/campDlt/${_id}`).then((res) => {
+          console.log(res);
+          refetch();
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        });
+      }
+    });
+  };
   return (
     <div className="mt-5 mr-5 ">
       <div className="overflow-x-auto mt-5">
@@ -54,7 +74,7 @@ const ManageCamps = () => {
                   </Link>
                 </Table.Cell>
                 <Table.Cell>
-                  <Button>
+                  <Button onClick={() => handleDelete(manage._id)}>
                     <MdDeleteForever></MdDeleteForever>
                   </Button>
                 </Table.Cell>
