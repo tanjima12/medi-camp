@@ -18,6 +18,8 @@ import AllUsers from "./Component/DashBoard/AllUsers";
 import OrganizerProfile from "./Component/DashBoard/OrganizerProfile";
 import UpdateOrganizerInfo from "./Component/DashBoard/UpdateOrganizerInfo";
 import AddCamps from "./Component/DashBoard/AddCamp";
+import ManageCamps from "./Component/DashBoard/ManageCamps";
+import ManageUpdate from "./Component/DashBoard/ManageUpdate";
 
 const queryClient = new QueryClient();
 
@@ -67,6 +69,10 @@ const router = createBrowserRouter([
         path: "addCamps",
         element: <AddCamps></AddCamps>,
       },
+      {
+        path: "manageCamps",
+        element: <ManageCamps></ManageCamps>,
+      },
     ],
   },
   {
@@ -75,6 +81,12 @@ const router = createBrowserRouter([
 
     loader: ({ params }) =>
       fetch(`http://localhost:5004/updateInfo/${params.id}`),
+  },
+  {
+    path: "/updateCamp/:id",
+    element: <ManageUpdate></ManageUpdate>,
+    loader: ({ params }) =>
+      fetch(`http://localhost:5004/campUpdateInfo/${params.id}`),
   },
 ]);
 

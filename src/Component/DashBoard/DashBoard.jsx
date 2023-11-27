@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { CgProfile } from "react-icons/cg";
+import { CgAdd, CgEditFade, CgMenu, CgProfile } from "react-icons/cg";
 import { FaUserShield } from "react-icons/fa";
 import NavBar from "../Home/Navbar";
 
@@ -8,9 +8,9 @@ const DashBoard = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div className="flex ml-10">
-        <div className="flex mt-5 justify-between w-[350px] h-[700px] bg-emerald-950">
-          <div className="mt-5">
+      <div className="flex ml-10 ">
+        <div className="flex mt-5 justify-between w-[350px] h-[700px] bg-emerald-950 ">
+          <div className="mt-5 mr-5">
             <ul>
               {isAdmin ? (
                 <>
@@ -28,8 +28,26 @@ const DashBoard = () => {
                       className="text-white ml-10 text-2xl font-Rosarivo flex "
                       to="/dashboard/addCamps"
                     >
-                      <CgProfile></CgProfile>
+                      <CgAdd></CgAdd>
                       Add Camps
+                    </NavLink>
+                  </li>
+                  <li className="">
+                    <NavLink
+                      className="text-white ml-10 text-2xl font-Rosarivo flex "
+                      to="/dashboard/manageCamps"
+                    >
+                      <CgMenu></CgMenu>
+                      Manage Camps
+                    </NavLink>
+                  </li>
+                  <li className="">
+                    <NavLink
+                      className="text-white ml-10 text-2xl font-Rosarivo flex "
+                      to=""
+                    >
+                      <CgEditFade></CgEditFade>
+                      Manage Register Camps
                     </NavLink>
                   </li>
                   <li>

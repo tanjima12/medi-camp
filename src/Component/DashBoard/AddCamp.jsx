@@ -36,24 +36,36 @@ const AddCamps = () => {
       specializedServices,
       participantCount,
     };
-    console.log("newBlog", newCamp);
+    console.log("newCamp", newCamp);
 
-    fetch("http://localhost:5004/camp", {
+    fetch("http://localhost:5004/addCamp", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "content-type": "application/json",
       },
       body: JSON.stringify(newCamp),
     })
-      .then((res) => res.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
-        console.log(data);
-
+        // Handle successful response
+        console.log("Success:", data);
         form.reset();
-        Swal.fire("SuccessFully Submitted");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Succesfully Updated",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
-        console.error("Error submitting form:", error);
+        // Handle errors here
+        console.error("Error:", error);
       });
   };
 
@@ -204,7 +216,7 @@ const AddCamps = () => {
                   </div>
 
                   <div className="w-full flex justify-center mt-5">
-                    <Button type="submit">Register</Button>
+                    <Button type="submit">Add Camp</Button>
                   </div>
                 </div>
               </div>

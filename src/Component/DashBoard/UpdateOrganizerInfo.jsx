@@ -28,18 +28,25 @@ const UpdateOrganizerInfo = () => {
     };
     console.log("info", updateInfo);
     fetch(`http://localhost:5004/updateInfo/${id}`, {
-      method: "PUT",
+      method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "content-type": "application/json",
       },
       body: JSON.stringify(updateInfo),
     })
-      .then((res) => res.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
-        console.log(data);
+        // Handle successful response
+        console.log("Success:", data);
       })
       .catch((error) => {
-        console.error(error);
+        // Handle errors here
+        console.error("Error:", error);
       });
 
     // fetch(`http://localhost:5004/updateInfo/${id}`, {
