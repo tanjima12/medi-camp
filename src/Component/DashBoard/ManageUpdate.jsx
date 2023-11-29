@@ -1,6 +1,7 @@
 import { Button, Label } from "flowbite-react";
 
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ManageUpdate = () => {
   const { id } = useParams();
@@ -26,21 +27,17 @@ const ManageUpdate = () => {
       venueLocation,
     };
     console.log("info", updateInfo);
-    fetch(`http://localhost:5004/updateInfo/${id}`, {
+    fetch(`http://localhost:5004/campUpdateInfo/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(updateInfo),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
       .then((data) => {
         console.log("Success:", data);
+        Swal.fire("SuccessFully updated");
+        form.reset();
       })
       .catch((error) => {
         console.error("Error:", error);

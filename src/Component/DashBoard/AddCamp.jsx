@@ -13,7 +13,7 @@ const AddCamps = () => {
     e.preventDefault();
     const form = e.target;
 
-    const name = form.name.value;
+    const campName = form.name.value;
     const campFees = form.fees.value;
     const scheduledDate = form.date.value;
     const campDetails = form.campDetails.value;
@@ -23,6 +23,7 @@ const AddCamps = () => {
     const healthcareProfessionals = form.health.value;
     const specializedServices = form.services.value;
     const participantCount = parseInt(form.participantCount.value);
+    const targetAudience = form.audience.value;
 
     const newCamp = {
       campFees,
@@ -31,10 +32,11 @@ const AddCamps = () => {
       venueLocation,
       scheduledTime,
       image,
-      name,
+      campName,
       healthcareProfessionals,
       specializedServices,
       participantCount,
+      targetAudience,
     };
     console.log("newCamp", newCamp);
 
@@ -211,6 +213,23 @@ const AddCamps = () => {
                           required
                         />
                       </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-between ml-5">
+                    <div>
+                      <div className="mb-2 block">
+                        <Label
+                          value="targetAudience
+"
+                        />
+                      </div>
+                      <input
+                        type="text"
+                        className="w-[250px]"
+                        placeholder="audience"
+                        name="audience"
+                        required
+                      />
                     </div>
                   </div>
 

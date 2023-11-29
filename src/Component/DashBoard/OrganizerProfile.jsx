@@ -28,7 +28,7 @@ const OrganizerProfile = () => {
       return res.data;
     },
   });
-  const [data] = feedback;
+
   console.log(feedback);
   return (
     <div className="bg-teal-100 mt-5">

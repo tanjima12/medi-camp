@@ -18,34 +18,28 @@ const UpdateOrganizerInfo = () => {
     const form = e.target;
 
     const name = form.name.value;
-    const roll = form.role.value;
+    const role = form.role.value;
     const photoURL = form.photoURL.value;
 
     const updateInfo = {
       name,
-      roll,
+      role,
       photoURL,
     };
     console.log("info", updateInfo);
     fetch(`http://localhost:5004/updateInfo/${id}`, {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(updateInfo),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
       .then((data) => {
-        // Handle successful response
         console.log("Success:", data);
+        Swal.fire("SuccessFully updated");
+        form.reset();
       })
       .catch((error) => {
-        // Handle errors here
         console.error("Error:", error);
       });
 
