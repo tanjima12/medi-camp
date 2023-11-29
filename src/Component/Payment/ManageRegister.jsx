@@ -43,7 +43,7 @@ const ManageRegister = () => {
           <Table.Head>
             <Table.HeadCell>Camp name</Table.HeadCell>
             <Table.HeadCell>Venue</Table.HeadCell>
-            <Table.HeadCell>Date And Time</Table.HeadCell>
+
             <Table.HeadCell>Camp Fees</Table.HeadCell>
             <Table.HeadCell>Payment Status</Table.HeadCell>
             <Table.HeadCell>Confirmation Status</Table.HeadCell>
@@ -58,8 +58,8 @@ const ManageRegister = () => {
                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                   {pay.campName}
                 </Table.Cell>
-                <Table.Cell>{pay.Venue}</Table.Cell>
-                <Table.Cell>{new Date(pay.date).toLocaleString()}</Table.Cell>
+                <Table.Cell>{pay.venueLocation}</Table.Cell>
+
                 <Table.Cell>{pay.fees}</Table.Cell>
                 <Table.Cell>
                   <Button>{pay.status === "unpaid" ? "unPaid" : "paid"}</Button>

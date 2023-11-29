@@ -52,7 +52,6 @@ const AddCamps = () => {
         return response.json();
       })
       .then((data) => {
-        // Handle successful response
         console.log("Success:", data);
         form.reset();
         Swal.fire({

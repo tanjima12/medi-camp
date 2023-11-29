@@ -20,9 +20,19 @@ const OrganizerProfile = () => {
   });
   // console.log("profile", profile);
   // console.log("role", profile.email);
+
+  const { data: feedback = [] } = useQuery({
+    queryKey: ["popularCamps"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/feedback`);
+      return res.data;
+    },
+  });
+  const [data] = feedback;
+  console.log(feedback);
   return (
-    <div className="flex justify-evenly">
-      <div className="mt-10 ml-10">
+    <div className="bg-teal-100 mt-5">
+      <div className="pt-10 ml-96">
         {profile.map((info) => (
           <div className="flex " key={info._id}>
             <div className="container">
@@ -45,21 +55,28 @@ const OrganizerProfile = () => {
                 </div>
               </div>
             </div>
-
-            <div>
-              <Card className="w-[600px] h-[380px] ml-10 ">
-                <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Noteworthy technology acquisitions 2021
-                </h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">
-                  Here are the biggest enterprise technology acquisitions of
-                  2021 so far, in reverse chronological order.
-                </p>
-              </Card>
-            </div>
           </div>
         ))}
       </div>
+
+      <Card className="w-[600px] h-[380px] ml-10 mt-10 mx-auto mt-10 ">
+        <h5 className="text-2xl font-bold">
+          <ul>
+            <li>
+              Overall positive experience and satisfaction. Achieved objectives
+              and expectations. Willingness to attend future editions.
+            </li>
+          </ul>
+        </h5>
+        <p className="font-normal text-gray-700 dark:text-gray-400 ">
+          Your story:Driven by an insatiable curiosity and an unyielding work
+          ethic, Alex excelled in academics despite facing financial hardships.
+          After high school, with limited resources, Alex secured a scholarship
+          to a prestigious university. The journey was tough, balancing
+          academics, part-time jobs, and community service, but it shaped Alex
+          into a resilient and compassionate individual.
+        </p>
+      </Card>
     </div>
   );
 };

@@ -27,6 +27,7 @@ import PaymentHistory from "./Component/Payment/PaymentHistory";
 import ManageRegister from "./Component/Payment/ManageRegister";
 import AllPaymentHistory from "./Component/Payment/AllPaymwntHistory";
 import Feedback from "./Component/DashBoard/Feedback";
+import PrivateRoute from "./Component/Authentication/PrivateRoute";
 
 const queryClient = new QueryClient();
 
@@ -62,7 +63,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashBoard></DashBoard>,
+    element: (
+      <PrivateRoute>
+        <DashBoard></DashBoard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "users",

@@ -26,8 +26,8 @@ const ManageUpdate = () => {
       venueLocation,
     };
     console.log("info", updateInfo);
-    fetch(`http://localhost:5004/campUpdateInfo/${id}`, {
-      method: "POST",
+    fetch(`http://localhost:5004/updateInfo/${id}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
@@ -40,17 +40,12 @@ const ManageUpdate = () => {
         return response.json();
       })
       .then((data) => {
-        // Handle successful response
         console.log("Success:", data);
       })
       .catch((error) => {
-        // Handle errors here
         console.error("Error:", error);
       });
   };
-
-  
-
   return (
     <div>
       <div className="flex justify-center mt-10">
