@@ -5,6 +5,8 @@ import { Label, Modal } from "flowbite-react";
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Authentication/AuthProvider";
+import useAxiosPublic from "../Hook/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const Camp = ({ camp }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -13,6 +15,16 @@ const Camp = ({ camp }) => {
   );
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const axiosSecure = useAxiosPublic();
+  const { data: profile = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/?email=${user?.email}`);
+      return res.data;
+    },
+  });
+  const [data] = profile;
 
   function onCloseModal() {
     setOpenModal(false);
@@ -32,7 +44,7 @@ const Camp = ({ camp }) => {
   } = camp;
   const handleRegistration = (e) => {
     e.preventDefault();
-    if (!user || !user.email) {
+    if (!user || !user?.email) {
       Swal.fire({
         title: "You don not Log In",
         text: "please Log in",
@@ -60,6 +72,7 @@ const Camp = ({ camp }) => {
     const email = form.email.value;
     const campName = form.campName.value;
     const venueLocation = form.venue.value;
+    const status = form.status.value;
 
     const joinCampinfo = {
       name,
@@ -74,6 +87,7 @@ const Camp = ({ camp }) => {
       email,
       campName,
       venueLocation,
+      status,
     };
 
     fetch("http://localhost:5004/joinCamp", {
@@ -122,7 +136,11 @@ const Camp = ({ camp }) => {
             </p>
           </div>
           <div className="flex justify-between">
-            <Button onClick={() => setOpenModal(true)}>Join Camp</Button>
+            {data?.role === "Organizers" && "Healthcare Professionals" ? (
+              <Button disabled>Join Camp</Button>
+            ) : (
+              <Button onClick={() => setOpenModal(true)}>Join Camp</Button>
+            )}
 
             <Modal show={openModal} onClose={onCloseModal} popup>
               <Modal.Header />
@@ -195,7 +213,7 @@ const Camp = ({ camp }) => {
                         <input
                           type="text"
                           className="w-[250px]"
-                          placeholder="Camp Fees"
+                          placeholder={campFees}
                           name="fees"
                           required
                         />
@@ -247,7 +265,7 @@ const Camp = ({ camp }) => {
                         </div>
                         <input
                           type="text"
-                          placeholder="Email"
+                          value={user?.email}
                           className="w-[250px]"
                           name="email"
                         />
@@ -258,13 +276,13 @@ const Camp = ({ camp }) => {
                         </div>
                         <input
                           type="text"
-                          placeholder="Camp Name"
+                          value={campName}
                           className="w-[250px]"
                           name="campName"
                         />
                       </div>
                     </div>
-                    <div>
+                    <div className="flex ml-5">
                       <div className="mb-2 block">
                         <Label value="Venue" />
                       </div>
@@ -272,7 +290,19 @@ const Camp = ({ camp }) => {
                         type="text"
                         className="w-[250px]"
                         placeholder="Venue"
+                        value={venueLocation}
                         name="venue"
+                        required
+                      />
+                      <div className="mb-2 block">
+                        <Label value="payment Status" />
+                      </div>
+                      <input
+                        type="text"
+                        className="w-[250px]"
+                        placeholder="Payment status "
+                        value="unpaid"
+                        name="status"
                         required
                       />
                     </div>

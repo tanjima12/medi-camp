@@ -22,6 +22,10 @@ import ManageCamps from "./Component/DashBoard/ManageCamps";
 import ManageUpdate from "./Component/DashBoard/ManageUpdate";
 import Payment from "./Component/DashBoard/Payment";
 import RegisteredCamp from "./Component/Payment/RegisteredCamp";
+import PaymentHistory from "./Component/Payment/PaymentHistory";
+
+import ManageRegister from "./Component/Payment/ManageRegister";
+import AllPaymentHistory from "./Component/Payment/AllPaymwntHistory";
 
 const queryClient = new QueryClient();
 
@@ -82,6 +86,18 @@ const router = createBrowserRouter([
       {
         path: "registered-camps",
         element: <RegisteredCamp></RegisteredCamp>,
+      },
+      {
+        path: "history",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "manageRegister",
+        element: <ManageRegister></ManageRegister>,
+      },
+      {
+        path: "allPayment",
+        element: <AllPaymentHistory></AllPaymentHistory>,
       },
     ],
   },

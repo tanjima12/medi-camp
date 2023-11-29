@@ -1,11 +1,31 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { CgAdd, CgEditFade, CgMenu, CgProfile } from "react-icons/cg";
-import { FaUserShield } from "react-icons/fa";
+import { FaPaypal, FaUserShield } from "react-icons/fa";
 import NavBar from "../Home/Navbar";
 import { FaCcAmazonPay } from "react-icons/fa6";
+import { MdOutlinePayment } from "react-icons/md";
+import { MdPayments } from "react-icons/md";
+import { useContext } from "react";
+
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic, { axiosSecure } from "../Hook/useAxiosPublic";
+import { AuthContext } from "../Authentication/AuthProvider";
 
 const DashBoard = () => {
-  const isAdmin = true;
+  // const isAdmin = true;
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosPublic();
+  const { data: profile = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/?email=${user?.email}`);
+      return res.data;
+    },
+  });
+  const [data] = profile;
+  console.log(data);
+  console.log("role", data?.role);
+
   return (
     <div>
       <NavBar></NavBar>
@@ -13,7 +33,19 @@ const DashBoard = () => {
         <div className="flex mt-5 justify-between w-[350px] h-[700px] bg-emerald-950 ">
           <div className="mt-5 mr-5">
             <ul>
-              {isAdmin ? (
+              {data?.role === "Healthcare Professionals" ? (
+                <>
+                  <li className="">
+                    <NavLink
+                      className="text-white ml-10 text-2xl font-Rosarivo flex "
+                      to="/dashboard/manage-profile"
+                    >
+                      <CgProfile></CgProfile>
+                      Manage Profile
+                    </NavLink>
+                  </li>
+                </>
+              ) : data?.role === "Organizers" ? (
                 <>
                   <li className="">
                     <NavLink
@@ -45,10 +77,31 @@ const DashBoard = () => {
                   <li className="">
                     <NavLink
                       className="text-white ml-10 text-2xl font-Rosarivo flex "
-                      to=""
+                      to="/dashboard/manageRegister"
                     >
                       <CgEditFade></CgEditFade>
                       Manage Register Camps
+                    </NavLink>
+                  </li>
+                  <li className="">
+                    <NavLink
+                      className="text-white ml-10 text-2xl font-Rosarivo flex "
+                      to="/dashboard/allPayment"
+                    >
+                      <CgEditFade></CgEditFade>
+                      All Payment History
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="">
+                    <NavLink
+                      className="text-white ml-10 text-2xl font-Rosarivo flex "
+                      to="/dashboard/manage-profile"
+                    >
+                      <CgProfile></CgProfile>
+                      Manage Profile
                     </NavLink>
                   </li>
                   <li className="">
@@ -63,25 +116,34 @@ const DashBoard = () => {
                   <li className="">
                     <NavLink
                       className="text-white ml-10 text-2xl font-Rosarivo flex "
-                      to="/dashboard/payment"
+                      to="/dashboard/history"
                     >
-                      <FaCcAmazonPay></FaCcAmazonPay>
-                      Payment
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="text-white ml-10 text-2xl font-Rosarivo flex "
-                      to="/dashboard/users"
-                    >
-                      <FaUserShield></FaUserShield>
-                      Home Users
+                      <MdPayments></MdPayments>
+                      Payment History
                     </NavLink>
                   </li>
                 </>
-              ) : (
-                <></>
               )}
+
+              {/* <li className="">
+                <NavLink
+                  className="text-white ml-10 text-2xl font-Rosarivo flex "
+                  to="/dashboard/payment"
+                >
+                  <FaCcAmazonPay></FaCcAmazonPay>
+                  Payment
+                </NavLink>
+              </li> */}
+
+              <li>
+                <NavLink
+                  className="text-white ml-10 text-2xl font-Rosarivo flex "
+                  to="/dashboard/users"
+                >
+                  <FaUserShield></FaUserShield>
+                  Home Users
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>

@@ -18,6 +18,7 @@ const RegisteredCamp = () => {
     },
   });
   const totalFees = Camps.reduce((total, item) => total + item.fees, 0);
+  const hasUnpaidCamps = Camps.some((camp) => camp.status === "unpaid");
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -48,15 +49,10 @@ const RegisteredCamp = () => {
         <h1 className="text-2xl font-poppins">Total Camp: {Camps.length}</h1>
         <h1 className="text-2xl font-poppins">Price: ${totalFees}</h1>
         <Link to="/dashboard/payment">
-          {Camps.length ? (
-            <Button className="text-4xl font-poppins">Pay</Button>
-          ) : (
-            <Button disabled className="text-4xl font-poppins">
-              Pay
-            </Button>
-          )}
+          <Button disabled={!hasUnpaidCamps} className="text-4xl font-poppins">
+            Pay
+          </Button>
         </Link>
-        /dashboard/payment
       </div>
       <div className="mt-5 mr-5 ">
         <div className="overflow-x-auto mt-5">
@@ -85,8 +81,12 @@ const RegisteredCamp = () => {
                   <Table.Cell className="text-black">
                     {register.venueLocation}
                   </Table.Cell>
-                  <Table.Cell className="text-black"></Table.Cell>
-                  <Table.Cell className="text-black"></Table.Cell>
+                  <Table.Cell className="text-black">
+                    {register.status}
+                  </Table.Cell>
+                  <Table.Cell className="text-black">
+                    {register.status === "unpaid" ? "pending" : "confirmed"}
+                  </Table.Cell>
                   <Table.Cell className="text-black">
                     <Button onClick={() => handleDelete(register._id)}>
                       <FaDeleteLeft></FaDeleteLeft>

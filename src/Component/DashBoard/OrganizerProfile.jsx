@@ -18,7 +18,8 @@ const OrganizerProfile = () => {
       return res.data;
     },
   });
-
+  // console.log("profile", profile);
+  // console.log("role", profile.email);
   return (
     <div className="flex justify-evenly">
       <div className="mt-10 ml-10">
@@ -37,7 +38,7 @@ const OrganizerProfile = () => {
                   ></img>
                   <p className="heading"> {info.name} </p>
                   <p className="follow">Email:{info.email}</p>
-                  <p>Role:{info.roll}</p>
+                  <p>Role:{info.role}</p>
                   <Link to={`/updateInfo/${info._id}`}>
                     <Button>Update</Button>
                   </Link>
