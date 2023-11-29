@@ -3,7 +3,7 @@ import { CgAdd, CgEditFade, CgMenu, CgProfile } from "react-icons/cg";
 import { FaPaypal, FaUserShield } from "react-icons/fa";
 import NavBar from "../Home/Navbar";
 import { FaCcAmazonPay } from "react-icons/fa6";
-import { MdOutlinePayment } from "react-icons/md";
+import { MdFeedback, MdOutlinePayment } from "react-icons/md";
 import { MdPayments } from "react-icons/md";
 import { useContext } from "react";
 
@@ -120,6 +120,15 @@ const DashBoard = () => {
                     >
                       <MdPayments></MdPayments>
                       Payment History
+                    </NavLink>
+                  </li>
+                  <li className="">
+                    <NavLink
+                      className="text-white ml-10 text-2xl font-Rosarivo flex "
+                      to="/dashboard/feedBack"
+                    >
+                      <MdFeedback></MdFeedback>
+                      Give Your FeedBack and Ratings
                     </NavLink>
                   </li>
                 </>
