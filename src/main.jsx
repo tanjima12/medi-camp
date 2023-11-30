@@ -29,6 +29,7 @@ import AllPaymentHistory from "./Component/Payment/AllPaymwntHistory";
 import Feedback from "./Component/DashBoard/Feedback";
 import PrivateRoute from "./Component/Authentication/PrivateRoute";
 import Contact from "./Component/Home/Contact";
+import UpComing from "./Component/Payment/UpComing";
 
 const queryClient = new QueryClient();
 
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
       {
         path: "feedBack",
         element: <Feedback></Feedback>,
+      },
+      {
+        path: "upComing",
+        element: <UpComing></UpComing>,
       },
     ],
   },

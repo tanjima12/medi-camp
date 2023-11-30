@@ -16,7 +16,7 @@ const DashBoard = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosPublic();
   const { data: profile = [] } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["dashuser"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/?email=${user?.email}`);
       return res.data;
@@ -90,6 +90,15 @@ const DashBoard = () => {
                     >
                       <CgEditFade></CgEditFade>
                       All Payment History
+                    </NavLink>
+                  </li>
+                  <li className="">
+                    <NavLink
+                      className="text-white ml-10 text-2xl font-Rosarivo flex "
+                      to="/dashboard/upComing"
+                    >
+                      <CgEditFade></CgEditFade>
+                      ADD Upcoming Camp
                     </NavLink>
                   </li>
                   <li>
