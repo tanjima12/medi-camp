@@ -22,7 +22,7 @@ const OrganizerProfile = () => {
   // console.log("role", profile.email);
 
   const { data: feedback = [] } = useQuery({
-    queryKey: ["popularCamps"],
+    queryKey: ["review"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/feedback`);
       return res.data;

@@ -1,9 +1,50 @@
+import { useQuery } from "@tanstack/react-query";
+import { Carousel } from "flowbite-react";
+import useAxiosPublic from "../Hook/useAxiosPublic";
+import { Rating } from "@smastrom/react-rating";
+
+import "@smastrom/react-rating/style.css";
+
 const Testimonials = () => {
+  const axiosSecure = useAxiosPublic();
+  const { data: feedback = [] } = useQuery({
+    queryKey: ["review"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/feedback`);
+      return res.data;
+    },
+  });
+  console.log("fee", feedback);
   return (
     <div>
-      <div className="mt-5">
-        <p className="text-center">What Our perticipant Say</p>
-        <h1 className="text-4xl font-poppins text-center">Testimonials</h1>
+      <h1 className="text-2xl font-poppins text-orange-700 text-center mt-10">
+        Testimonial
+      </h1>
+      <p className="text-xl text-center mb-5">What Our Perticipant Say</p>
+      <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 ml-96">
+        <Carousel slideInterval={5000}>
+          {feedback.map((item) => (
+            <div key={item._id}>
+              <Rating
+                className="ml-56"
+                style={{ maxWidth: 180 }}
+                value={item.rating}
+                readOnly
+              />
+              <h1 className="text-2xl text-green-950 ml-56">{item.CampName}</h1>
+              <p className="ml-28">{item.feedback}</p>
+              <p className="ml-60 mb-3">{item.experience}</p>
+              <div>
+                <img
+                  className="h-60 w-[700px]"
+                  src={item.testimonial}
+                  alt="..."
+                />
+              </div>
+              <div></div>
+            </div>
+          ))}
+        </Carousel>
       </div>
     </div>
   );

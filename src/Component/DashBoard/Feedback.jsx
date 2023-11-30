@@ -30,7 +30,9 @@ const Feedback = () => {
     const rating = parseInt(form.rate.value);
     const feedback = form.feedback.value;
     const experience = form.experience.value;
+    const CampName = form.name.value;
     const feedbacks = {
+      CampName,
       testimonial,
       rating,
       feedback,
@@ -278,6 +280,18 @@ const Feedback = () => {
                                           required
                                         />
                                       </div>
+                                    </div>
+                                    <div>
+                                      <div className="mb-2 block">
+                                        <Label value="Camp Name" />
+                                      </div>
+                                      <input
+                                        type="text"
+                                        className="w-[250px]"
+                                        placeholder="Camp Name"
+                                        name="name"
+                                        required
+                                      />
                                     </div>
                                     <div>
                                       <label className="block text-sm text-gray-500 dark:text-gray-300">
