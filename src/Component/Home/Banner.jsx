@@ -147,9 +147,6 @@ const Banner = () => {
           </div>
         </div>
       </AwesomeSlider>
-      <div>
-        <h1 className="text-xl">Our Achievement</h1>
-      </div>
     </div>
   );
 };
