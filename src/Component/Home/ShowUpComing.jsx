@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 
 const ShowUpComing = () => {
   const axiosSecure = useAxiosPublic();
-  const { data: Upcamp = [] } = useQuery({
-    queryKey: ["Upcamp"],
+  const { data: Upcamp = [], refetch } = useQuery({
+    queryKey: ["Ups"],
     queryFn: async () => {
       const res = await axiosSecure.get("/addUpComing");
+      refetch();
       return res.data;
     },
   });
@@ -18,36 +19,36 @@ const ShowUpComing = () => {
         Our UpComing Camp
       </h1>
       <div className="grid grid-cols-3">
-        {Upcamp.map((item) => (
-          <div key={item._id}>
+        {Upcamp?.map((item) => (
+          <div key={item?._id}>
             <div className="block w-[400px] rounded-lg mb-5 mr-5 bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
                   className="rounded-t-lg h-[300px] w-[400px]"
-                  src={item.image}
+                  src={item?.image}
                   alt=""
                 />
               </div>
               <div className="p-6">
                 <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                  Camp Name: {item.campName}
+                  Camp Name: {item?.campName}
                 </h5>
                 <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                  {item.campDetails}
+                  {item?.campDetails}
                 </p>
                 <div>
                   <div className="flex justify-evenly">
                     <p className=" text-xl  dark:text-neutral-200 mb-3">
-                      Audience:{item.targetAudience}
+                      Audience:{item?.targetAudience}
                     </p>
-                    <p className="text-xl">Venue:{item.venueLocation}</p>
+                    <p className="text-xl">Venue:{item?.venueLocation}</p>
                   </div>
                   <div className="flex justify-evenly">
                     <p className="text-xl text-red-950 mb-3">
                       Date:{item.scheduledDate}
                     </p>
                     <p className="text-xl text-red-950">
-                      Perticipant:{item.participantCount}
+                      Perticipant:{item?.participantCount}
                     </p>
                   </div>
                 </div>
