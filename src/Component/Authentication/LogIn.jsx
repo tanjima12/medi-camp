@@ -140,9 +140,9 @@ const LogIn = () => {
 
                 <div className="relative">
                   <input
-                    className="input"
                     type="password"
                     name="password"
+                    className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                     placeholder=""
                     required=""
                   />
