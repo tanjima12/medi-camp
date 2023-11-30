@@ -4,10 +4,10 @@ import "./Home.css";
 const FooTer = () => {
   return (
     <div>
-      <Footer container className="mt-10 bg-zinc-100 mb-5">
+      <Footer container className="mt-10 bg-[#EAFAF1] mb-5">
         <div className="w-full text-center">
           <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
-            <div className="flex gap-2">
+            <div className="flex gap-2 mt-20">
               <Footer.Brand
                 src="https://i.ibb.co/pbttF4z/Screenshot-153.png"
                 name="CareCamp"
