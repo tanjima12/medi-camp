@@ -6,7 +6,7 @@ const ReadyToHEalp = () => {
         brings a special brightness to our <br></br>community.
       </h1>
       <img
-        className="h-96  w-[450px] rounded-s-full"
+        className="h-56 w-56 mr-32 lg:mr-1 lg:h-96  lg:w-[450px] lg:rounded-s-full"
         src="https://i.ibb.co/jT5JVBx/smiling-young-brunette-female-doctor-uniform-with-stethoscope-1.jpg"
       ></img>
     </div>
