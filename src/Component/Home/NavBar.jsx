@@ -52,7 +52,7 @@ const NavBar = () => {
             ? "text-emerald-700 border-b-2 text-xl hover:bg-red-50 px-3 py-2 rounded-xl font-poppins"
             : " text-black text-xl font-poppins px-3 py-2"
         }
-        to="Us"
+        to="/contact"
       >
         Contact Us
       </NavLink>

@@ -92,6 +92,15 @@ const DashBoard = () => {
                       All Payment History
                     </NavLink>
                   </li>
+                  <li>
+                    <NavLink
+                      className="text-white ml-10 text-2xl font-Rosarivo flex "
+                      to="/dashboard/users"
+                    >
+                      <FaUserShield></FaUserShield>
+                      Home Users
+                    </NavLink>
+                  </li>
                 </>
               ) : (
                 <>
@@ -143,16 +152,6 @@ const DashBoard = () => {
                   Payment
                 </NavLink>
               </li> */}
-
-              <li>
-                <NavLink
-                  className="text-white ml-10 text-2xl font-Rosarivo flex "
-                  to="/dashboard/users"
-                >
-                  <FaUserShield></FaUserShield>
-                  Home Users
-                </NavLink>
-              </li>
             </ul>
           </div>
         </div>

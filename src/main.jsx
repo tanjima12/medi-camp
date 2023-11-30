@@ -28,6 +28,7 @@ import ManageRegister from "./Component/Payment/ManageRegister";
 import AllPaymentHistory from "./Component/Payment/AllPaymwntHistory";
 import Feedback from "./Component/DashBoard/Feedback";
 import PrivateRoute from "./Component/Authentication/PrivateRoute";
+import Contact from "./Component/Home/Contact";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         element: <CampDetails></CampDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5004/campdetails/${params.id}`),
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
       },
     ],
   },
