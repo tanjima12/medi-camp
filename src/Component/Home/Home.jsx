@@ -1,3 +1,4 @@
+import AnyHelp from "./AnyHelp";
 import Banner from "./Banner";
 
 import HomeCamp from "./HomeCamp";
@@ -14,6 +15,7 @@ const Home = () => {
       <ReadyToHEalp></ReadyToHEalp>
       <HomeCamp></HomeCamp>
       <Testimonials></Testimonials>
+      <AnyHelp></AnyHelp>
     </div>
   );
 };

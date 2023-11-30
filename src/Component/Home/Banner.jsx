@@ -4,9 +4,9 @@ import "react-awesome-slider/dist/styles.css";
 const Banner = () => {
   return (
     <div>
-      <AwesomeSlider className="h-[700px] mt-10">
+      <AwesomeSlider className="lg:h-[700px] mt-10">
         <div
-          className="bg-no-repeat bg-opacity-50"
+          className="bg-no-repeat w-[7000px] lg:[w-1000px] bg-opacity-50"
           style={{
             backgroundImage: "url(https://i.ibb.co/RQnG18N/image-5.jpg)",
           }}

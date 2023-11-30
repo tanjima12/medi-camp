@@ -3,7 +3,7 @@ import FooTer from "../Home/Footer";
 
 const Root = () => {
   return (
-    <div className="w-[1400px] ml-16">
+    <div className="lg:w-[1400px] lg:ml-16">
       <Outlet></Outlet>
       <FooTer></FooTer>
     </div>
