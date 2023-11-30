@@ -67,7 +67,6 @@ const Banner = () => {
 
             <div className="flex justify-end mt-4">
               <a
-                href="#"
                 className="text-lg font-medium text-amber-500 dark:text-blue-300"
                 role="link"
               >
