@@ -1,7 +1,7 @@
 const ReadyToHEalp = () => {
   return (
     <div className="flex justify-center  items-center mt-20 mb-20">
-      <h1 className="text-xl font-thin mt-10 mr-10">
+      <h1 className="text-xl font-thin mt-10 mr-10" data-aos="fade-right">
         Welcome! 🌟 Were delighted to have you here.<br></br> Your presence
         brings a special brightness to our <br></br>community.
       </h1>

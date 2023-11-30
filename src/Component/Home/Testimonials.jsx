@@ -32,8 +32,11 @@ const Testimonials = () => {
                 readOnly
               />
               <h1 className="text-2xl text-green-950 ml-56">{item.CampName}</h1>
-              <p className="ml-28">{item.feedback}</p>
-              <p className="ml-60 mb-3">{item.experience}</p>
+              <div>
+                {" "}
+                <p className="">{item.feedback}</p>
+                <p className=" mb-5">{item.experience}</p>
+              </div>
               <div>
                 <img
                   className="h-60 w-[700px]"
