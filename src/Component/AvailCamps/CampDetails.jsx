@@ -16,7 +16,7 @@ const CampDetails = () => {
 
   const axiosSecure = useAxiosPublic();
   const { data: profile = [] } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["usered"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/?email=${user?.email}`);
       return res.data;
@@ -90,7 +90,7 @@ const CampDetails = () => {
       status,
     };
 
-    fetch("http://localhost:5004/joinCamp", {
+    fetch("http://localhost:5005/joinCamp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

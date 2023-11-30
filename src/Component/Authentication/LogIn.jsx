@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import useAxiosPublic from "../Hook/useAxiosPublic";
+import axios from "axios";
 
 const LogIn = () => {
   const [mainUser, setMainUser] = useState(null);
@@ -51,6 +52,13 @@ const LogIn = () => {
     SignIn(email, password)
       .then((result) => {
         console.log(result.user);
+        // const loggedInUser = result.user;
+        // console.log(loggedInUser);
+        // const user = { email };
+        // axios.post("http://localhost:5005/jwt", user).then((res) => {
+        //   console.log(res.data);
+        // });
+
         navigate(location.state ? location?.state : "/");
         Swal.fire({
           position: "top-end",

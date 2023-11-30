@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const AllUsers = () => {
   const axiosSecure = useAxiosPublic();
   const { data: users, refetch } = useQuery({
-    queryKey: ["popularCamps"],
+    queryKey: ["use"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users`);
       return res.data;

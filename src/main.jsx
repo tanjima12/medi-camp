@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         path: "/details/:id",
         element: <CampDetails></CampDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5004/campdetails/${params.id}`),
+          fetch(`http://localhost:5005/campdetails/${params.id}`),
       },
       {
         path: "/contact",
@@ -121,13 +121,13 @@ const router = createBrowserRouter([
     element: <UpdateOrganizerInfo></UpdateOrganizerInfo>,
 
     loader: ({ params }) =>
-      fetch(`http://localhost:5004/updateInfo/${params.id}`),
+      fetch(`http://localhost:5005/updateInfo/${params.id}`),
   },
   {
     path: "/updateCamp/:id",
     element: <ManageUpdate></ManageUpdate>,
     loader: ({ params }) =>
-      fetch(`http://localhost:5004/campUpdateInfo/${params.id}`),
+      fetch(`http://localhost:5005/campUpdateInfo/${params.id}`),
   },
 ]);
 

@@ -27,7 +27,7 @@ const UpdateOrganizerInfo = () => {
       photoURL,
     };
     console.log("info", updateInfo);
-    fetch(`http://localhost:5004/updateInfo/${id}`, {
+    fetch(`http://localhost:5005/updateInfo/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -43,7 +43,7 @@ const UpdateOrganizerInfo = () => {
         console.error("Error:", error);
       });
 
-    // fetch(`http://localhost:5004/updateInfo/${id}`, {
+    // fetch(`http://localhost:5005/updateInfo/${id}`, {
     //   method: "PUT",
     //   headers: {
     //     "Content-Type": "application/json",

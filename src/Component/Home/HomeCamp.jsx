@@ -5,7 +5,7 @@ import Camp from "../AvailCamps/Camp";
 const HomeCamp = () => {
   const axiosSecure = useAxiosPublic();
   const { data: camp = [] } = useQuery({
-    queryKey: ["popularcamps"],
+    queryKey: ["pcamp"],
     queryFn: async () => {
       const res = await axiosSecure.get("/popularCamps");
       return res.data;

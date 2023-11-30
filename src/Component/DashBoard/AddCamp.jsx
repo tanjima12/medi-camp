@@ -40,7 +40,7 @@ const AddCamps = () => {
     };
     console.log("newCamp", newCamp);
 
-    fetch("http://localhost:5004/addCamp", {
+    fetch("http://localhost:5005/addCamp", {
       method: "POST",
       headers: {
         "content-type": "application/json",

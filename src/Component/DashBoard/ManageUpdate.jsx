@@ -27,7 +27,7 @@ const ManageUpdate = () => {
       venueLocation,
     };
     console.log("info", updateInfo);
-    fetch(`http://localhost:5004/campUpdateInfo/${id}`, {
+    fetch(`http://localhost:5005/campUpdateInfo/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

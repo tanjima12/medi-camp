@@ -10,7 +10,7 @@ const ManageCamps = () => {
   // const [camp, setCamp] = useState();
   const axiosSecure = useAxiosPublic();
   const { data: users = [], refetch } = useQuery({
-    queryKey: ["popularCamps"],
+    queryKey: ["popularity"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/popularCamps`);
       return res.data;

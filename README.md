@@ -1,8 +1,13 @@
-# React + Vite
+\*/Website Name:Medi Camp
+\*/ Five Main Features:
+my project name is Medi Camp which is used for medical camping.Creating this project i used firebase,vercel,flowbite,react aswome component,tailwind,lottio etc.
+FireBase:Firebase is a comprehensive platform provided by Google for building web and mobile applications. It offers a variety of services that help developers with tasks such as authentication, real-time databases, hosting, cloud functions, and more.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Axios:Axios is a popular JavaScript library used for making HTTP requests from the browser or Node.js. It is promise-based and provides a simple and clean API for handling HTTP requests and responses. Axios is commonly used in frontend frameworks like React, Angular, and Vue, as well as in Node.js applications.
 
-Currently, two official plugins are available:
+Vercel:Vercel is a cloud platform for static sites and serverless functions that enables developers to deploy their web projects with ease. It simplifies the deployment process, providing a seamless experience for hosting frontend applications, static websites, and serverless functions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+useEffect:useEffect is a hook in React that allows functional components to perform side effects. Side effects in React typically include data fetching, subscriptions, manual DOM manipulations, and more.
+
+lottoi:i used it for using animation
+Tailwind:Tailwind CSS is a popular utility-first CSS framework that provides a set of low-level utility classes to build designs directly in your markup. It is known for its simplicity, flexibility, and ease of use.

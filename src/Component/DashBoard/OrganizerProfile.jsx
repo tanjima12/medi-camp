@@ -12,7 +12,7 @@ const OrganizerProfile = () => {
 
   const { user } = useContext(AuthContext);
   const { data: profile = [] } = useQuery({
-    queryKey: ["popularCamps"],
+    queryKey: ["poCamp"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/?email=${user?.email}`);
       return res.data;

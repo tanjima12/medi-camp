@@ -11,7 +11,7 @@ const RegisteredCamp = () => {
   const axiosSecure = useAxiosPublic();
   const { user } = useContext(AuthContext);
   const { data: Camps = [], refetch } = useQuery({
-    queryKey: ["registerCamps"],
+    queryKey: ["registerCamped"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/joinCamp/?email=${user?.email}`);
       return res.data;

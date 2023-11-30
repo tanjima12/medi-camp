@@ -90,7 +90,7 @@ const Camp = ({ camp }) => {
       status,
     };
 
-    fetch("http://localhost:5004/joinCamp", {
+    fetch("http://localhost:5005/joinCamp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -13,7 +13,7 @@ const Feedback = () => {
   const [openModal, setOpenModal] = useState(false);
   const axiosSecure = useAxiosPublic();
   const { data: JoinCamp = [] } = useQuery({
-    queryKey: ["popularCamps"],
+    queryKey: ["popular"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/joinCamp/?email=${user?.email}`);
       return res.data;
@@ -40,7 +40,7 @@ const Feedback = () => {
     };
     console.log(feedbacks);
 
-    fetch("http://localhost:5004/feedback", {
+    fetch("http://localhost:5005/feedback", {
       method: "POST",
       headers: {
         "content-type": "application/json",

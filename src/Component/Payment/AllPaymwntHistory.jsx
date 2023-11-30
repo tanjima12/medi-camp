@@ -17,6 +17,8 @@ const AllPaymentHistory = () => {
       return res.data;
     },
   });
+  const { data } = payment;
+  console.log(data);
 
   const handleAllPayment = (pay) => {
     axiosSecure.patch(`/payment/${pay._id}`).then((res) => {
