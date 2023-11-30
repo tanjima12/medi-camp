@@ -27,13 +27,16 @@ const ManageUpdate = () => {
       venueLocation,
     };
     console.log("info", updateInfo);
-    fetch(`http://localhost:5005/campUpdateInfo/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updateInfo),
-    })
+    fetch(
+      `https://b8a12-server-side-tanjima12.vercel.app/campUpdateInfo/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateInfo),
+      }
+    )
       .then((data) => {
         console.log("Success:", data);
         Swal.fire("SuccessFully updated");

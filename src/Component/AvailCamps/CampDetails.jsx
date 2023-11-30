@@ -90,7 +90,7 @@ const CampDetails = () => {
       status,
     };
 
-    fetch("http://localhost:5005/joinCamp", {
+    fetch("https://b8a12-server-side-tanjima12.vercel.app/joinCamp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

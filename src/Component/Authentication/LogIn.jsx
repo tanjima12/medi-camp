@@ -55,7 +55,7 @@ const LogIn = () => {
         // const loggedInUser = result.user;
         // console.log(loggedInUser);
         // const user = { email };
-        // axios.post("http://localhost:5005/jwt", user).then((res) => {
+        // axios.post("https://b8a12-server-side-tanjima12.vercel.app/jwt", user).then((res) => {
         //   console.log(res.data);
         // });
 

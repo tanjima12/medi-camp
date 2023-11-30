@@ -58,7 +58,9 @@ const router = createBrowserRouter([
         path: "/details/:id",
         element: <CampDetails></CampDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5005/campdetails/${params.id}`),
+          fetch(
+            `https://b8a12-server-side-tanjima12.vercel.app/campdetails/${params.id}`
+          ),
       },
       {
         path: "/contact",
@@ -121,13 +123,17 @@ const router = createBrowserRouter([
     element: <UpdateOrganizerInfo></UpdateOrganizerInfo>,
 
     loader: ({ params }) =>
-      fetch(`http://localhost:5005/updateInfo/${params.id}`),
+      fetch(
+        `https://b8a12-server-side-tanjima12.vercel.app/updateInfo/${params.id}`
+      ),
   },
   {
     path: "/updateCamp/:id",
     element: <ManageUpdate></ManageUpdate>,
     loader: ({ params }) =>
-      fetch(`http://localhost:5005/campUpdateInfo/${params.id}`),
+      fetch(
+        `https://b8a12-server-side-tanjima12.vercel.app/campUpdateInfo/${params.id}`
+      ),
   },
 ]);
 

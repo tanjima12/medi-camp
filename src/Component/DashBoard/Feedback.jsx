@@ -40,7 +40,7 @@ const Feedback = () => {
     };
     console.log(feedbacks);
 
-    fetch("http://localhost:5005/feedback", {
+    fetch("https://b8a12-server-side-tanjima12.vercel.app/feedback", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -40,7 +40,7 @@ const AddCamps = () => {
     };
     console.log("newCamp", newCamp);
 
-    fetch("http://localhost:5005/addCamp", {
+    fetch("https://b8a12-server-side-tanjima12.vercel.app/addCamp", {
       method: "POST",
       headers: {
         "content-type": "application/json",
