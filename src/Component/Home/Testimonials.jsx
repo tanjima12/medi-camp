@@ -26,12 +26,14 @@ const Testimonials = () => {
           {feedback.map((item) => (
             <div key={item._id}>
               <Rating
-                className="ml-56"
+                className="lg:ml-56"
                 style={{ maxWidth: 180 }}
                 value={item.rating}
                 readOnly
               />
-              <h1 className="text-2xl text-green-950 ml-56">{item.CampName}</h1>
+              <h1 className="text-2xl text-green-950 lg:ml-56">
+                {item.CampName}
+              </h1>
               <div>
                 {" "}
                 <p className="">{item.feedback}</p>
@@ -39,7 +41,7 @@ const Testimonials = () => {
               </div>
               <div>
                 <img
-                  className="h-60 w-[700px]"
+                  className="lg:h-60 lg:w-[700px]"
                   src={item.testimonial}
                   alt="..."
                 />

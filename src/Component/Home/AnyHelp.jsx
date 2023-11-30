@@ -4,7 +4,7 @@ import { MdOutgoingMail, MdWhatsapp } from "react-icons/md";
 
 const AnyHelp = () => {
   return (
-    <div className="flex mt-20 items-center">
+    <div className="flex flex-col lg:flex-rowmt-20 items-center">
       <div className="w-[500px]">
         <Lottie loop={true} animationData={animation}></Lottie>
       </div>

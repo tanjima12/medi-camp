@@ -20,7 +20,7 @@ const HomeCamp = () => {
         Popolar Medical Camps
       </h1>
 
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3">
         {camp?.slice(0, 6).map((camp) => (
           <Camp key={camp._id} camp={camp}></Camp>
         ))}
