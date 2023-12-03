@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import useAxiosPublic from "../Hook/useAxiosPublic";
-import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const LogIn = () => {
   const [mainUser, setMainUser] = useState(null);
@@ -81,6 +81,9 @@ const LogIn = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>MediCamp||login</title>
+      </Helmet>
       <NavBar></NavBar>
       <h1>
         <section className="relative flex  lg:h-screen lg:items-center mt-10">
@@ -190,7 +193,7 @@ const LogIn = () => {
                 onClick={handleGoggleLogIn}
               >
                 <img src="https://i.ibb.co/tbswKCh/google-300221.png"></img>
-                <h2 className="text-green-500">Log in With Google</h2>
+                <h2 className="text-green-500"> Google LogIn</h2>
               </div>
             </form>
           </div>

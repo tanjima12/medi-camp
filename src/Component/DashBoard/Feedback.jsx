@@ -3,10 +3,12 @@ import { useContext } from "react";
 import { AuthContext } from "../Authentication/AuthProvider";
 import useAxiosPublic from "../Hook/useAxiosPublic";
 import { Button } from "flowbite-react";
-import { MdFeedback } from "react-icons/md";
+import { MdFeedback, MdReviews } from "react-icons/md";
 import { Checkbox, Label, Modal, TextInput } from "flowbite-react";
 import { useRef, useState } from "react";
 import Swal from "sweetalert2";
+import { CgFeed } from "react-icons/cg";
+import { Helmet } from "react-helmet-async";
 
 const Feedback = () => {
   const { user } = useContext(AuthContext);
@@ -31,12 +33,14 @@ const Feedback = () => {
     const feedback = form.feedback.value;
     const experience = form.experience.value;
     const CampName = form.name.value;
+    const date = form.date.value;
     const feedbacks = {
       CampName,
       testimonial,
       rating,
       feedback,
       experience,
+      date,
     };
     console.log(feedbacks);
 
@@ -77,6 +81,9 @@ const Feedback = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>MediCamp||Feedback</title>
+      </Helmet>
       <h1 className="text-2xl text-center font-poppins mt-10">
         This is your Joining Camp.<br></br>Please feel free you give us
         yourimportant feedback
@@ -239,7 +246,7 @@ const Feedback = () => {
                               className="mt-5"
                               onClick={() => setOpenModal(true)}
                             >
-                              <MdFeedback></MdFeedback>
+                              <MdReviews></MdReviews>
                             </Button>
 
                             <Modal
@@ -289,7 +296,20 @@ const Feedback = () => {
                                         type="text"
                                         className="w-[250px]"
                                         placeholder="Camp Name"
+                                        value={item.campName}
                                         name="name"
+                                        required
+                                      />
+                                    </div>
+                                    <div>
+                                      <div className="mb-2 block">
+                                        <Label value="Date" />
+                                      </div>
+                                      <input
+                                        type="date"
+                                        className="w-[250px]"
+                                        placeholder="Date"
+                                        name="date"
                                         required
                                       />
                                     </div>

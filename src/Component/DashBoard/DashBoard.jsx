@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic, { axiosSecure } from "../Hook/useAxiosPublic";
 import { AuthContext } from "../Authentication/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const DashBoard = () => {
   // const isAdmin = true;
@@ -28,6 +29,9 @@ const DashBoard = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>MediCamp||Dashboard</title>
+      </Helmet>
       <NavBar></NavBar>
       <div className="flex ml-10 ">
         <div className="flex mt-5 justify-between w-[350px] h-[700px] bg-emerald-950 ">

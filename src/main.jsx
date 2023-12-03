@@ -30,6 +30,8 @@ import Feedback from "./Component/DashBoard/Feedback";
 import PrivateRoute from "./Component/Authentication/PrivateRoute";
 import Contact from "./Component/Home/Contact";
 import UpComing from "./Component/Payment/UpComing";
+import { HelmetProvider } from "react-helmet-async";
+import UpComingDetails from "./Component/Payment/UpComingDetails";
 
 const queryClient = new QueryClient();
 
@@ -45,7 +47,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/avaiCamps",
-        element: <AvailCamps></AvailCamps>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <AvailCamps></AvailCamps>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/logIn",
@@ -66,6 +73,14 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact></Contact>,
+      },
+      {
+        path: "/ShowUpDetails/:id",
+        element: <UpComingDetails></UpComingDetails>,
+        loader: ({ params }) =>
+          fetch(
+            `https://b8a12-server-side-tanjima12.vercel.app/showUpdetails/${params.id}`
+          ),
       },
     ],
   },
@@ -146,7 +161,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <HelmetProvider>
+          <RouterProvider router={router} />
+        </HelmetProvider>
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

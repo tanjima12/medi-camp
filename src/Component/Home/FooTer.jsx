@@ -1,5 +1,8 @@
 import { Footer } from "flowbite-react";
 import "./Home.css";
+import { Link } from "react-router-dom";
+import { MdFacebook } from "react-icons/md";
+import { CgInstagram } from "react-icons/cg";
 
 const FooTer = () => {
   return (
@@ -22,13 +25,21 @@ const FooTer = () => {
                 About
               </Footer.Link>
               <Footer.Link href="#" className="text-xl font-poppins">
-                Privacy Policy
+                Our Social Site
+                <a href="https://www.facebook.com">
+                  <MdFacebook className="ml-10"></MdFacebook>
+                </a>
+                <a href="https://www.instagram.com/">
+                  <CgInstagram className="ml-10 mt-5"></CgInstagram>
+                </a>
               </Footer.Link>
-              <Footer.Link href="#" className="text-xl font-poppins">
-                Licensing
+              <Footer.Link className="text-xl font-poppins">
+                <Link to="/avaiCamps"> Available Camps</Link>
               </Footer.Link>
               <Footer.Link href="#" className="text-xl font-poppins">
                 Contact
+                <h1>phone:0125478</h1>
+                <h1>Email:mediCamp@gmail.com</h1>
               </Footer.Link>
             </Footer.LinkGroup>
           </div>

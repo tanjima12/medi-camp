@@ -1,4 +1,5 @@
 import { Button, Label } from "flowbite-react";
+import { Helmet } from "react-helmet-async";
 
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -48,6 +49,9 @@ const ManageUpdate = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>MediCamp||Manage Update camps</title>
+      </Helmet>
       <div className="flex justify-center mt-10">
         <form onSubmit={handleUpdateInfo}>
           <div className="space-y-6">

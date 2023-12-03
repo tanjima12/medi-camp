@@ -5,6 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import { Button, Table } from "flowbite-react";
 import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { FaDeleteLeft } from "react-icons/fa6";
+import { MdDelete } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 const ManageRegister = () => {
   const { user } = useContext(AuthContext);
@@ -35,8 +38,30 @@ const ManageRegister = () => {
       );
     }
   };
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/campregisDlt/${_id}`).then((res) => {
+          console.log(res);
+          refetch();
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        });
+      }
+    });
+  };
   return (
     <div>
+      <Helmet>
+        <title>MediCamp||Manage Register </title>
+      </Helmet>
       <h1>Total Payment: {addcamp.length}</h1>
       <div>
         <Table hoverable>
@@ -47,6 +72,7 @@ const ManageRegister = () => {
             <Table.HeadCell>Camp Fees</Table.HeadCell>
             <Table.HeadCell>Payment Status</Table.HeadCell>
             <Table.HeadCell>Confirmation Status</Table.HeadCell>
+            <Table.HeadCell>Camp Date</Table.HeadCell>
             <Table.HeadCell>Actions</Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y">
@@ -61,22 +87,31 @@ const ManageRegister = () => {
                 <Table.Cell>{pay.venueLocation}</Table.Cell>
 
                 <Table.Cell>{pay.fees}</Table.Cell>
+
                 <Table.Cell>
                   <Button>{pay.status === "unpaid" ? "unPaid" : "paid"}</Button>
                 </Table.Cell>
+
                 <Table.Cell>
-                  <Button onClick={() => handlePayment(pay)}>
+                  <Button
+                    className="bg-green-500"
+                    onClick={() => handlePayment(pay)}
+                  >
                     {pay.status === "unpaid" ? "pending" : "Confirm"}
                   </Button>
                 </Table.Cell>
+                <Table.Cell>{pay.date}</Table.Cell>
                 <Table.Cell>
                   {pay.status === "unpaid" ? (
                     <Button disabled>
-                      <FaEdit></FaEdit>
+                      <MdDelete></MdDelete>
                     </Button>
                   ) : (
-                    <Button>
-                      <FaEdit></FaEdit>
+                    <Button
+                      className="bg-red-700"
+                      onClick={() => handleDelete(pay._id)}
+                    >
+                      <MdDelete></MdDelete>
                     </Button>
                   )}
                 </Table.Cell>

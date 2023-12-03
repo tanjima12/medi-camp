@@ -3,6 +3,7 @@ import useAxiosPublic from "../Hook/useAxiosPublic";
 import { Button, Table } from "flowbite-react";
 import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosPublic();
@@ -52,6 +53,9 @@ const AllUsers = () => {
 
   return (
     <div className="mt-5">
+      <Helmet>
+        <title>MediCamp||All Users</title>
+      </Helmet>
       <div className="flex justify-evenly">
         <h1 className="text-2xl font-poppins">Total Users:</h1>
         <h1 className="text-2xl font-poppins">

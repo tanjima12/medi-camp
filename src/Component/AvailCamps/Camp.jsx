@@ -17,7 +17,7 @@ const Camp = ({ camp }) => {
   const navigate = useNavigate();
 
   const axiosSecure = useAxiosPublic();
-  const { data: profile = [] } = useQuery({
+  const { data: profile = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/?email=${user?.email}`);
@@ -55,6 +55,7 @@ const Camp = ({ camp }) => {
         confirmButtonText: "LogIn",
       }).then((result) => {
         if (result.isConfirmed) {
+          refetch();
           navigate("/logIn");
         }
       });
@@ -73,6 +74,7 @@ const Camp = ({ camp }) => {
     const campName = form.campName.value;
     const venueLocation = form.venue.value;
     const status = form.status.value;
+    const date = form.date.value;
 
     const joinCampinfo = {
       name,
@@ -88,6 +90,7 @@ const Camp = ({ camp }) => {
       campName,
       venueLocation,
       status,
+      date,
     };
 
     fetch("https://b8a12-server-side-tanjima12.vercel.app/joinCamp", {
@@ -282,9 +285,10 @@ const Camp = ({ camp }) => {
                         />
                       </div>
                     </div>
-                    <div className="flex ml-5">
-                      <div className="mb-2 block">
-                        <Label value="Venue" />
+
+                    <div className="flex  ">
+                      <div className="mb-2 block mr">
+                        <Label value="Venue:" />
                       </div>
                       <input
                         type="text"
@@ -294,8 +298,9 @@ const Camp = ({ camp }) => {
                         name="venue"
                         required
                       />
+
                       <div className="mb-2 block">
-                        <Label value="payment Status" />
+                        <Label value="payment Status:" />
                       </div>
                       <input
                         type="text"
@@ -304,6 +309,18 @@ const Camp = ({ camp }) => {
                         value="unpaid"
                         name="status"
                         required
+                      />
+                    </div>
+
+                    <div>
+                      <div className="mb-2 block">
+                        <Label value="Date" />
+                      </div>
+                      <input
+                        type="text"
+                        className="w-[250px]"
+                        placeholder="camping date"
+                        name="date"
                       />
                     </div>
 

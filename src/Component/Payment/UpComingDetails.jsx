@@ -1,66 +1,46 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
 import { Button, Label, Modal } from "flowbite-react";
-import { useContext, useState } from "react";
-import { AuthContext } from "../Authentication/AuthProvider";
-import useAxiosPublic from "../Hook/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
-import Swal from "sweetalert2";
-import NavBar from "../Home/Navbar";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useLoaderData } from "react-router-dom";
+import NavBar from "../Home/Navbar";
+import Swal from "sweetalert2";
 
-const CampDetails = () => {
+const UpComingDetails = () => {
   const loader = useLoaderData();
-  const { user } = useContext(AuthContext);
   const [openModal, setOpenModal] = useState(false);
-
-  const navigate = useNavigate();
-
-  const axiosSecure = useAxiosPublic();
-  const { data: profile = [] } = useQuery({
-    queryKey: ["usered"],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/users/?email=${user?.email}`);
-      return res.data;
-    },
-  });
-  const [data] = profile;
-  function onCloseModal() {
-    setOpenModal(false);
-  }
   const {
+    CampName,
     image,
-    campName,
     campFees,
-    scheduledDate,
-    scheduledTime,
-    venueLocation,
-    specializedServices,
-    healthcareProfessionals,
-    targetAudience,
     campDetails,
-    _id,
-
+    audience,
+    sheduleDate,
+    venueLocation,
     participantCount,
   } = loader;
 
+  function onCloseModal() {
+    setOpenModal(false);
+  }
+  console.log(loader);
+
   const handleRegistration = (e) => {
     e.preventDefault();
-    if (!user || !user?.email) {
-      Swal.fire({
-        title: "You don not Log In",
-        text: "please Log in",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "LogIn",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/logIn");
-        }
-      });
-      return;
-    }
+    // if (!user || !user?.email) {
+    //   Swal.fire({
+    //     title: "You don not Log In",
+    //     text: "please Log in",
+    //     icon: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonColor: "#3085d6",
+    //     cancelButtonColor: "#d33",
+    //     confirmButtonText: "LogIn",
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //     }
+    //   });
+    //   return;
+    // }
     const form = e.target;
     const name = form.name.value;
     const age = form.age.value;
@@ -74,9 +54,8 @@ const CampDetails = () => {
     const campName = form.campName.value;
     const venueLocation = form.venue.value;
     const status = form.status.value;
-    const date = form.date.value;
 
-    const joinCampinfo = {
+    const joinUpCampinfo = {
       name,
       age,
       phoneNumber,
@@ -85,20 +64,20 @@ const CampDetails = () => {
       address,
       requirements,
       contact,
-      campId: _id,
+
       email,
       campName,
       venueLocation,
       status,
-      date,
     };
+    console.log(joinUpCampinfo);
 
-    fetch("https://b8a12-server-side-tanjima12.vercel.app/joinCamp", {
+    fetch("https://b8a12-server-side-tanjima12.vercel.app/joinUpComing", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(joinCampinfo),
+      body: JSON.stringify(joinUpCampinfo),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -115,7 +94,7 @@ const CampDetails = () => {
   return (
     <div>
       <Helmet>
-        <title>MediCamp||CampDetails</title>
+        <title>MediCamp||upComingDetails</title>
       </Helmet>
       <NavBar></NavBar>
       <div className="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
@@ -128,7 +107,7 @@ const CampDetails = () => {
         </div>
         <div className="p-6">
           <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-            Camp Name: {campName}
+            Camp Name: {CampName}
           </h5>
           <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
             {campDetails}
@@ -136,12 +115,12 @@ const CampDetails = () => {
           <div>
             <div className="flex justify-evenly">
               <p className=" text-2xl  dark:text-neutral-200 mb-3">
-                Audience:{targetAudience}
+                Audience:{audience}
               </p>
               <p className="text-2xl">Venue:{venueLocation}</p>
             </div>
             <div className="flex justify-evenly">
-              <p className="text-2xl text-red-950 mb-3">Date:{scheduledDate}</p>
+              <p className="text-2xl text-red-950 mb-3">Date:{sheduleDate}</p>
               <p className="text-2xl text-red-950">
                 Perticipant:{participantCount}
               </p>
@@ -149,19 +128,10 @@ const CampDetails = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          {data?.role === "Organizers" && "Healthcare Professionals" ? (
-            <Button
-              disabled
-              className="mb-10"
-              onClick={() => setOpenModal(true)}
-            >
-              Join Camp
-            </Button>
-          ) : (
-            <Button className="mb-10" onClick={() => setOpenModal(true)}>
-              Join Camp
-            </Button>
-          )}
+          <Button className="mb-10" onClick={() => setOpenModal(true)}>
+            Join Camp
+          </Button>
+
           <Modal show={openModal} onClose={onCloseModal} popup>
             <Modal.Header />
 
@@ -283,12 +253,7 @@ const CampDetails = () => {
                       <div className="mb-2 block ">
                         <Label value="Please Provide Your Email" />
                       </div>
-                      <input
-                        type="text"
-                        value={user?.email}
-                        className="w-[250px]"
-                        name="email"
-                      />
+                      <input type="text" className="w-[250px]" name="email" />
                     </div>
                     <div>
                       <div className="mb-2 block ">
@@ -296,7 +261,6 @@ const CampDetails = () => {
                       </div>
                       <input
                         type="text"
-                        value={campName}
                         className="w-[250px]"
                         name="campName"
                       />
@@ -328,7 +292,7 @@ const CampDetails = () => {
                   </div>
 
                   <div className="w-full flex justify-center ">
-                    <Button>Register</Button>
+                    <Button type="submit">Register for up Coming Camp</Button>
                   </div>
                 </div>
               </form>
@@ -340,4 +304,4 @@ const CampDetails = () => {
   );
 };
 
-export default CampDetails;
+export default UpComingDetails;

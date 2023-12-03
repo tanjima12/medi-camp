@@ -22,6 +22,7 @@ const PaymentHistory = () => {
   return (
     <div>
       <h1>Total Payments: {payment.length}</h1>
+      <h1 className="text-3xl mb-5 text-center">Payment History</h1>
       <div>
         <Table hoverable>
           <Table.Head>
@@ -46,12 +47,10 @@ const PaymentHistory = () => {
                 <Table.Cell>{new Date(pay.date).toLocaleString()}</Table.Cell>
                 <Table.Cell>{pay.fees}</Table.Cell>
                 <Table.Cell>
-                  {pay.status === "pending" ? (
-                    <Link to="/dashboard/payment">
-                      <Button>Pay</Button>
-                    </Link>
+                  {pay.status === "pending" && "confirmed" ? (
+                    <Link to="/dashboard/payment">paid</Link>
                   ) : (
-                    "paid"
+                    <Button>Pay</Button>
                   )}
                 </Table.Cell>
                 <Table.Cell>{pay.status}</Table.Cell>

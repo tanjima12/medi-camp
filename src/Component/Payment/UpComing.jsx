@@ -2,6 +2,7 @@ import { Button, Label } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const UpComing = () => {
   const axiosSecure = useAxiosPublic();
@@ -25,7 +26,7 @@ const UpComing = () => {
       campDetails: data.campDetails,
       participantCount: data.participantCount,
       healthcareProfessionals: data.health,
-      photoURL: data.photoURL,
+      image: data.photoURL,
       audience: data.audience,
     };
     axiosSecure
@@ -42,6 +43,9 @@ const UpComing = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>MediCamp||UpComing</title>
+      </Helmet>
       <div className="lg:flex lg:ml-0 justify-center gap-10 items-center mt-10 b pb-32 ">
         <div>
           <h5 className="text-xl font-medium text-gray-900 dark:text-white">

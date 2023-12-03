@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const ShowUpComing = () => {
   const axiosSecure = useAxiosPublic();
+
   const { data: Upcamp = [], refetch } = useQuery({
     queryKey: ["Ups"],
     queryFn: async () => {
@@ -31,7 +32,7 @@ const ShowUpComing = () => {
               </div>
               <div className="p-6">
                 <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                  Camp Name: {item?.campName}
+                  Camp Name: {item?.CampName}
                 </h5>
                 <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
                   {item?.campDetails}
@@ -39,13 +40,13 @@ const ShowUpComing = () => {
                 <div>
                   <div className="flex justify-evenly">
                     <p className=" text-xl  dark:text-neutral-200 mb-3">
-                      Audience:{item?.targetAudience}
+                      Audience:{item?.audience}
                     </p>
                     <p className="text-xl">Venue:{item?.venueLocation}</p>
                   </div>
                   <div className="flex justify-evenly">
                     <p className="text-xl text-red-950 mb-3">
-                      Date:{item.scheduledDate}
+                      Date:{item.sheduleDate}
                     </p>
                     <p className="text-xl text-red-950">
                       Perticipant:{item?.participantCount}
@@ -53,7 +54,7 @@ const ShowUpComing = () => {
                   </div>
                 </div>
                 <div className="flex justify-center">
-                  <Link to="">
+                  <Link to={`/ShowUpDetails/${item._id}`}>
                     <Button className="text-xl flex bg-orange-950">
                       Details
                     </Button>

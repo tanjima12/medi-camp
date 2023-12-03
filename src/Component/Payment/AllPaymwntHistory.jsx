@@ -5,6 +5,7 @@ import useAxiosPublic from "../Hook/useAxiosPublic";
 import { Button, Table } from "flowbite-react";
 import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AllPaymentHistory = () => {
   const { user } = useContext(AuthContext);
@@ -30,6 +31,9 @@ const AllPaymentHistory = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>MediCamp||All Payment</title>
+      </Helmet>
       <h1>Total Payments: {payment.length}</h1>
       <div>
         <Table hoverable>
@@ -54,7 +58,9 @@ const AllPaymentHistory = () => {
                 <Table.Cell>{pay.Venue}</Table.Cell>
                 <Table.Cell>{new Date(pay.date).toLocaleString()}</Table.Cell>
                 <Table.Cell>{pay.fees}</Table.Cell>
-                <Table.Cell></Table.Cell>
+                <Table.Cell>
+                  <Button>paid</Button>
+                </Table.Cell>
 
                 <Table.Cell>
                   {pay.status === "pending" ? (

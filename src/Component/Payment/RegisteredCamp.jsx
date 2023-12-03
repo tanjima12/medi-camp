@@ -6,6 +6,7 @@ import { AuthContext } from "../Authentication/AuthProvider";
 import { FaDeleteLeft } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { MdCancel } from "react-icons/md";
 
 const RegisteredCamp = () => {
   const axiosSecure = useAxiosPublic();
@@ -64,6 +65,7 @@ const RegisteredCamp = () => {
               <Table.HeadCell>Venue</Table.HeadCell>
               <Table.HeadCell> Payment Status</Table.HeadCell>
               <Table.HeadCell>Confirmation Status</Table.HeadCell>
+              <Table.HeadCell>Date</Table.HeadCell>
               <Table.HeadCell>Action</Table.HeadCell>
             </Table.Head>
             <Table.Body className="divide-y">
@@ -88,8 +90,14 @@ const RegisteredCamp = () => {
                     {register.status === "unpaid" ? "pending" : "confirmed"}
                   </Table.Cell>
                   <Table.Cell className="text-black">
-                    <Button onClick={() => handleDelete(register._id)}>
-                      <FaDeleteLeft></FaDeleteLeft>
+                    {register.date}
+                  </Table.Cell>
+                  <Table.Cell className="text-black">
+                    <Button
+                      className="bg-red-700"
+                      onClick={() => handleDelete(register._id)}
+                    >
+                      <MdCancel></MdCancel>
                     </Button>
                   </Table.Cell>
                 </Table.Row>

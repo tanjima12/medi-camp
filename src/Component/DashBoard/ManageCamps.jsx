@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageCamps = () => {
   // const [camp, setCamp] = useState();
@@ -38,6 +39,9 @@ const ManageCamps = () => {
   };
   return (
     <div className="mt-5 mr-5 ">
+      <Helmet>
+        <title>MediCamp||ManageCamps</title>
+      </Helmet>
       <div className="overflow-x-auto mt-5">
         <Table hoverable>
           <Table.Head>
@@ -45,6 +49,9 @@ const ManageCamps = () => {
             <Table.HeadCell>Scheduled Date and Time</Table.HeadCell>
             <Table.HeadCell>Venue Location</Table.HeadCell>
             <Table.HeadCell>Specialized Services Provided</Table.HeadCell>
+            <Table.HeadCell>
+              Healthcare Professionals in Attendance
+            </Table.HeadCell>
             <Table.HeadCell>Edit</Table.HeadCell>
             <Table.HeadCell>Delete</Table.HeadCell>
           </Table.Head>
@@ -65,6 +72,9 @@ const ManageCamps = () => {
                 </Table.Cell>
                 <Table.Cell className="text-black">
                   {manage.specializedServices}
+                </Table.Cell>
+                <Table.Cell className="text-black">
+                  {manage.healthcareProfessionals}
                 </Table.Cell>
                 <Table.Cell>
                   <Link to={`/updateCamp/${manage._id}`}>

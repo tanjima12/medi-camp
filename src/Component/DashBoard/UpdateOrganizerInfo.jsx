@@ -1,11 +1,13 @@
 import { Button, Label } from "flowbite-react";
 import { useContext } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Authentication/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const UpdateOrganizerInfo = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   // const loader = useLoaderData();
   // console.log(loader);
@@ -38,6 +40,7 @@ const UpdateOrganizerInfo = () => {
         console.log("Success:", data);
         Swal.fire("SuccessFully updated");
         form.reset();
+        navigate(-1);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -66,6 +69,9 @@ const UpdateOrganizerInfo = () => {
   };
   return (
     <div className="flex justify-center mt-10">
+      <Helmet>
+        <title>MediCamp||Updateprofile</title>
+      </Helmet>
       <form onSubmit={handleUpdate}>
         <div className="space-y-6">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">

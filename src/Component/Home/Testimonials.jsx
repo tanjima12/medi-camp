@@ -10,10 +10,16 @@ const Testimonials = () => {
   const { data: feedback = [] } = useQuery({
     queryKey: ["review"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/feedback`);
-      return res.data;
+      try {
+        const res = await axiosSecure.get("/feedback?sortOrder=sc");
+        return res.data;
+      } catch (error) {
+        console.error("Error fetching feedback:", error);
+        return [];
+      }
     },
   });
+
   console.log("fee", feedback);
   return (
     <div>
@@ -23,32 +29,35 @@ const Testimonials = () => {
       <p className="text-xl text-center mb-5">What Our Perticipant Say</p>
       <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 ml-96">
         <Carousel slideInterval={5000}>
-          {feedback.map((item) => (
-            <div key={item._id}>
-              <Rating
-                className="lg:ml-56"
-                style={{ maxWidth: 180 }}
-                value={item.rating}
-                readOnly
-              />
-              <h1 className="text-2xl text-green-950 lg:ml-56">
-                {item.CampName}
-              </h1>
-              <div>
-                {" "}
-                <p className="">{item.feedback}</p>
-                <p className=" mb-5">{item.experience}</p>
-              </div>
-              <div>
-                <img
-                  className="lg:h-60 lg:w-[700px]"
-                  src={item.testimonial}
-                  alt="..."
+          {feedback
+            .sort((a, b) => parseInt(b.date) - parseInt(a.date))
+            .map((item) => (
+              <div key={item._id}>
+                <Rating
+                  className="lg:ml-56"
+                  style={{ maxWidth: 180 }}
+                  value={item.rating}
+                  readOnly
                 />
+                <h1 className="text-2xl text-green-950 lg:ml-56">
+                  {item.CampName}
+                </h1>
+                <div>
+                  {" "}
+                  <p className="">{item.feedback}</p>
+                  <p className=" mb-5">{item.experience}</p>
+                  <p className=" mb-5">Date:{item.date}</p>
+                </div>
+                <div>
+                  <img
+                    className="lg:h-60 lg:w-[700px]"
+                    src={item.testimonial}
+                    alt="..."
+                  />
+                </div>
+                <div></div>
               </div>
-              <div></div>
-            </div>
-          ))}
+            ))}
         </Carousel>
       </div>
     </div>

@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../Hook/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { createUser, updateUser } = useContext(AuthContext);
@@ -90,6 +91,9 @@ const Register = () => {
   // };
   return (
     <div>
+      <Helmet>
+        <title>MediCamp||register</title>
+      </Helmet>
       <NavBar></NavBar>
       <div className="flex justify-center mt-10">
         <form onSubmit={handleSubmit(onSubmit)} className="form">

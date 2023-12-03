@@ -1,12 +1,16 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckOutForm from "../Payment/CheckOutForm";
+import { Helmet } from "react-helmet-async";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 
 const Payment = () => {
   return (
     <div>
+      <Helmet>
+        <title>MediCamp||Payment</title>
+      </Helmet>
       <div>
         <h1 className="text-3xl font-Cinzel text-orange-900 text-center mt-10 font-bold ">
           Payment

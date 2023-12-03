@@ -6,6 +6,7 @@ import "./Dash.css";
 
 import { Button, Card } from "flowbite-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const OrganizerProfile = () => {
   const axiosSecure = useAxiosPublic();
@@ -18,7 +19,7 @@ const OrganizerProfile = () => {
       return res.data;
     },
   });
-  // console.log("profile", profile);
+  console.log("profile", profile);
   // console.log("role", profile.email);
 
   const { data: feedback = [] } = useQuery({
@@ -32,8 +33,11 @@ const OrganizerProfile = () => {
   console.log(feedback);
   return (
     <div className="bg-teal-100 mt-5">
+      <Helmet>
+        <title>MediCamp||Profile</title>
+      </Helmet>
       <div className="pt-10 ml-96">
-        {profile.map((info) => (
+        {profile?.map((info) => (
           <div className="flex " key={info._id}>
             <div className="container">
               <div className="card">
@@ -48,6 +52,7 @@ const OrganizerProfile = () => {
                   ></img>
                   <p className="heading"> {info.name} </p>
                   <p className="follow">Email:{info.email}</p>
+
                   <p>Role:{info.role}</p>
                   <Link to={`/updateInfo/${info._id}`}>
                     <Button>Update</Button>
