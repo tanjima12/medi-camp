@@ -1,13 +1,16 @@
 import { Button, Label, Modal } from "flowbite-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 import NavBar from "../Home/Navbar";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Authentication/AuthProvider";
 
 const UpComingDetails = () => {
+  const { user } = useContext(AuthContext);
   const loader = useLoaderData();
   const [openModal, setOpenModal] = useState(false);
+  const [openInterestModal, setOpenInterestModal] = useState(false);
   const {
     CampName,
     image,
@@ -21,6 +24,7 @@ const UpComingDetails = () => {
 
   function onCloseModal() {
     setOpenModal(false);
+    setOpenInterestModal(false);
   }
   console.log(loader);
 
@@ -78,6 +82,42 @@ const UpComingDetails = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(joinUpCampinfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        form.reset();
+        Swal.fire("SuccessFully Submitted");
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+      });
+  };
+  const handleProfessional = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const Specialization = form.special.value;
+    const campRequire = form.campRequire.value;
+
+    const contact = form.contact.value;
+
+    const interestUpCampinfo = {
+      name,
+      Specialization,
+      contact,
+
+      campRequire,
+    };
+    console.log(interestUpCampinfo);
+
+    fetch("https://b8a12-server-side-tanjima12.vercel.app/prof", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(interestUpCampinfo),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -289,6 +329,86 @@ const UpComingDetails = () => {
                       name="status"
                       required
                     />
+                  </div>
+
+                  <div className="w-full flex justify-center ">
+                    <Button type="submit">Register for up Coming Camp</Button>
+                  </div>
+                </div>
+              </form>
+            </Modal.Body>
+          </Modal>
+        </div>
+        <div className="flex justify-center">
+          <Button className="mb-10" onClick={() => setOpenInterestModal(true)}>
+            Interest Upcoming Camp
+          </Button>
+
+          <Modal
+            show={openInterestModal}
+            onClose={() => setOpenInterestModal(false)}
+            popup
+          >
+            <Modal.Header />
+
+            <Modal.Body>
+              <form onSubmit={handleProfessional}>
+                <div className="space-y-6">
+                  <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+                    HealthCare Professional Detail
+                  </h3>
+                  <div className="flex justify-between mr-5">
+                    <div>
+                      <div className="mb-2 block ">
+                        <Label value="Your Name" />
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        className="w-[250px]"
+                        name="name"
+                      />
+                    </div>
+
+                    <div>
+                      <div className="mb-2 block">
+                        <Label value="Specialization" />
+                      </div>
+                      <input
+                        type="text"
+                        className="w-[250px]"
+                        placeholder="Your Specialization"
+                        name="special"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between mr-5">
+                    <div>
+                      <div className="mb-2 block">
+                        <Label value="Contact" />
+                      </div>
+                      <input
+                        type="text"
+                        className="w-[250px]"
+                        placeholder="Your Contact Information"
+                        name="contact"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <div className="mb-2 block">
+                        <Label htmlFor="gender" value="Specific Camp Info" />
+                      </div>
+                      <input
+                        type="text"
+                        className="w-[250px]"
+                        placeholder="Camp requirements"
+                        name="campRequire"
+                        required
+                      />
+                    </div>
                   </div>
 
                   <div className="w-full flex justify-center ">
