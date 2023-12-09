@@ -1,7 +1,7 @@
 # Website Name:Medi Camp
 
 ### Live Link:https://medical-camptwo.web.app/
-## Five Main Features:
+## About My Project:
 - my project name is Medi Camp which is used for medical camping.Creating this project i used firebase,vercel,flowbite,react aswome component,tailwind,lottie etc.
   ## Project Features:
   - user can join their favourite camp.
